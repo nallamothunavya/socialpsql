@@ -28,9 +28,7 @@ public record PostCreateDTO
 {
 
 
-    [JsonPropertyName("post_id")]
-
-    public long PostId { get; set; }
+    
 
     [JsonPropertyName("post_date")]
 

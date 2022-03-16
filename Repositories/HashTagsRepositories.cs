@@ -35,14 +35,14 @@ public class HashtagRepository : BaseRepository, IHashtagRepository
         }
     }
 
-    public async Task<bool> Delete(long Id)
+    public async Task<bool> Delete(long HashTagId)
     {
         var query = $@"DELETE FROM ""{TableNames.hashtags}"" 
-        WHERE hashtag_id = Hash@Id";
+        WHERE hashtag_id = HashTagId";
 
         using (var con = NewConnection)
         {
-            var res = await con.ExecuteAsync(query, new { Id });
+            var res = await con.ExecuteAsync(query, new {HashTagId });
             return res > 0;
         }
     }
@@ -82,7 +82,7 @@ public class HashtagRepository : BaseRepository, IHashtagRepository
 
     public async Task<bool> Update(Hashtag Item)
      {
-         var query = $@"UPDATE ""{TableNames.hashtags}"" SET  name = @Name WHERE hashtag_id = @Id";
+         var query = $@"UPDATE ""{TableNames.hashtags}"" SET  hashtag_name = @HashTagName WHERE hashtag_id = @HashTagId";
          
 
          using (var con = NewConnection)

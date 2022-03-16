@@ -40,9 +40,7 @@ public class LikesController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<LikesCreateDTO>> CreatePost([FromBody] LikesCreateDTO Data)
     {
-        var post = await _likes.GetById(Data.PostId);
-        if (post is null)
-            return NotFound("No user found with given user id");
+       
 
         var toCreateLikes = new Likes
         {

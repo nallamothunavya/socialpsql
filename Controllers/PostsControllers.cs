@@ -38,14 +38,12 @@ public class PostController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<PostCreateDTO>> CreatePost([FromBody] PostCreateDTO Data)
     {
-        var user = await _user.GetById(Data.PostId);
-        if (user is null)
-            return NotFound("No user found with given post id");
+        
 
         var toCreatePost = new Post
         {
 
-            PostId = Data.PostId,
+            
             PostDate = Data.PostDate.UtcDateTime,
             NoOfImages = Data.NoOfImages,
            

@@ -32,7 +32,7 @@ public record UserDTO
 
 public record UserCreateDTO
 {
-    public string UserName { get; set; }
+    
     [JsonPropertyName("first_name")]
     [Required]
     [MaxLength(50)]

@@ -44,9 +44,6 @@ public class HashtagController : ControllerBase
     public async Task<ActionResult<HashtagDTO>> CreateUser([FromBody] HashtagCreateDTO Data)
     {
 
-          var post = await _hashtag.GetById(Data.HashTagId);
-        if (post is null)
-            return NotFound("No post found with given post id");
 
 
         var toCreateHashtag = new Hashtag
@@ -63,13 +60,13 @@ public class HashtagController : ControllerBase
 
 
     
-    [HttpPut("{hash_id}")]
-    public async Task<ActionResult> UpdateHashtag([FromRoute] long id,
+    [HttpPut("{hashtag_id}")]
+    public async Task<ActionResult> UpdateHashtag([FromRoute] long hashtag_id,
     [FromBody] HashtagUpdateDTO Data)
     {
-        var existing = await _hashtag.GetById(id);
+        var existing = await _hashtag.GetById(hashtag_id);
         if (existing is null)
-            return NotFound("No user found with given id");
+            return NotFound("No user found with given hashtag_id");
 
         var toUpdateHashtag = existing with
         {
@@ -89,14 +86,14 @@ public class HashtagController : ControllerBase
     }
 
 
-     [HttpDelete("{hash_id}")]
-    public async Task<ActionResult> DeleteHashtag([FromRoute] long id)
+     [HttpDelete("{hashtag_id}")]
+    public async Task<ActionResult> DeleteHashtag([FromRoute] long hashtag_id)
     {
-        var existing = await _hashtag.GetById(id);
+        var existing = await _hashtag.GetById(hashtag_id);
         if (existing is null)
-            return NotFound("No hashtag found with given  name");
+            return NotFound("No hashtag found with given  hastag_id");
 
-        var didDelete = await _hashtag.Delete(id);
+        var didDelete = await _hashtag.Delete(hashtag_id);
 
         return NoContent();
     }
